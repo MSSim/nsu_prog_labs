@@ -40,4 +40,3 @@
 [build12]: https://appveyor-matrix-badges.herokuapp.com/repos/bobrofon/nsu-prog-labs/branch/master/12
 [build13]: https://appveyor-matrix-badges.herokuapp.com/repos/bobrofon/nsu-prog-labs/branch/master/13
 
-[build-link]: https://ci.appveyor.com/project/bobrofon/nsu-prog-labs
