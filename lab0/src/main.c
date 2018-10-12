@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdio.h>
-#include <mem.h>
+// In MinGW mem.h is a mapping to string.h
+// #include <mem.h>
+#include <string.h>
 
 long long power(long long a, long long power) {
     long long solve = 1;
