@@ -1,8 +1,6 @@
 #include <stdio.h>
-#include <stdio.h>
-// In MinGW mem.h is a mapping to string.h
-// #include <mem.h>
 #include <string.h>
+#define SIZESTR 60
 
 long long power(long long a, long long power) {
     long long solve = 1;
@@ -31,9 +29,9 @@ char decToChar(long long a) {
     return -1;
 }
 
-long long b1_to_dec(long long b1, char *do_tochki) {
+long long b1_to_dec(long long b1, const char *do_tochki) {
     long long solve = 0;
-    long long n = strlen(do_tochki);
+    size_t n = strlen(do_tochki);
     for (long long i = 0; i < n; i++)
         solve = solve + charToDec(do_tochki[i]) * power(b1, n - i - 1);
     return solve;
@@ -48,7 +46,7 @@ double b1_to_drob(long long b1, char *posle_tochki) {
 }
 
 void print_dec_to_b2(long long b2, long long dec) {
-    char ob_solve[60] = {0};
+    char ob_solve[SIZESTR] = {0};
     long long i = 0;
     while (dec / b2 != 0) {
         ob_solve[i] = decToChar(dec % b2);
@@ -56,18 +54,20 @@ void print_dec_to_b2(long long b2, long long dec) {
         i++;
     }
     ob_solve[i] = decToChar(dec);
+
+    int len_ob_solve = strlen(ob_solve);
+
     for (i = 0; ob_solve[i] != '\0'; i++) {
-        printf("%c", ob_solve[strlen(ob_solve) - i - 1]);
+
+        printf("%c", ob_solve[len_ob_solve - i - 1]);
     }
 }
 
 void print_drob_to_b2(long long b2, double drob) {
-    long long i = 0;
-
     if (drob != 0)
         printf(".");
 
-    while (i < 20 && drob != 0) {
+    for (int i=0; i < 30 && drob != 0; i++) {
         drob *= b2;
         printf("%c", decToChar((long long) drob));
         drob -= (long long) drob;
@@ -75,10 +75,10 @@ void print_drob_to_b2(long long b2, double drob) {
     }
 }
 
-void print_result(long long b1, long long b2, const char nums[]) {
+void print_result(int b1, int b2,  char *nums) {
     char do_tochki[15] = {0};
     char posle_tochki[15] = {0};
-    long long i = 0;
+    int i = 0;
     for (; nums[i] != '\0'; i++) {
         if (nums[i] == '.') break;
         do_tochki[i] = nums[i];
@@ -113,9 +113,9 @@ long long test(long long b1, long long b2, char *nums) {
 }
 
 int main() {
-    long long b1, b2;
+    int b1, b2;
     char nums[15];
-    scanf("%lli%lli%s", &b1, &b2, nums);
+    scanf("%d%d%s", &b1, &b2, nums);
 
     if (test(b1, b2, nums) == -1) {
         printf("bad input");
