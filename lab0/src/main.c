@@ -3,8 +3,7 @@
 
 #define SIZESTR 60
 #define TOCHNOST 12
-#define  STRALPHABET 12
-#define SIMDOIPOSLETOCHKI 15
+#define STRALPHABET 12
 
 long long power(long long a, long long power) {
     long long solve = 1;
@@ -81,14 +80,9 @@ void print_drob_to_b2(long long b2, double drob) {
 }
 
 
-void print_result(int b1, int b2, char *nums) {
-    char do_tochki[SIMDOIPOSLETOCHKI] = {0};
-    char posle_tochki[SIMDOIPOSLETOCHKI] = {0};
-
+void print_result(int b1, int b2, const char *nums) {
     char *p = strchr(nums, '.');
     if (p != NULL) *p++ = '\0';
-
-
     long long dec = b1_to_dec(b1, nums);
     print_dec_to_b2(b2, dec);
     if (p != NULL) {
