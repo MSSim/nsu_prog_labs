@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 #define MAX_LEN 10
 
@@ -15,7 +16,8 @@ static void swap(int *perm_int, int i, int j) {
     perm_int[j] = tmp;
 }
 
-void test(const char *perm_char, const int *p_int, int *count, size_t size) {
+void test(const char *perm_char, const int *p_int, size_t size) {
+    bool count[MAX_LEN]={0};
     if (size == 0) exit(0);
     for (int k = 0; k < size; k++) {
         if (perm_char[k] < '0' || perm_char[k] > '9') print_error();
@@ -46,7 +48,6 @@ void dijkstra_algorithm(int *perm_int, int size, int n) {
 
 int main() {
     char perm_char[MAX_LEN + 1];
-    int count[MAX_LEN] = {0};
     int perm_int[MAX_LEN] = {0};
     int n = 0;
     scanf("%10s", perm_char);
@@ -55,6 +56,6 @@ int main() {
     for (int i = 0; i < size; i++) {
         perm_int[i] = perm_char[i] - '0';
     }
-    test(perm_char, perm_int, count, size);
+    test(perm_char, perm_int, size);
     dijkstra_algorithm(perm_int, size, n);
 }
