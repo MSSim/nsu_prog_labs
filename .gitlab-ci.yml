@@ -1,0 +1,107 @@
+image: 13coders/cpp17-base
+
+stages:
+  - test
+
+.test:
+  stage: test
+  before_script:
+    - mkdir -p "build_$LAB"
+    - cd "build_$LAB"
+  script:
+    - "STATUS=0"
+    - cmake ../$LAB
+    - make
+    - "CTEST_OUTPUT_ON_FAILURE=1 make test || STATUS=1"
+    - "ctest -T memcheck || STATUS=1"
+    - make clean
+    - cmake ../$LAB -DENABLE_ASAN=true -DCMAKE_C_COMPILER=clang
+    - make
+    - "./$LAB < in.txt > /dev/null || STATUS=1"
+    - make clean
+    - cmake ../$LAB -DENABLE_USAN=true -DCMAKE_C_COMPILER=clang
+    - make
+    - "./$LAB < in.txt > /dev/null || STATUS=1"
+    - "make check || STATUS=1"
+    - (($STATUS == 0))
+  after_script:
+    - head -c 256 build_"$LAB"/in.txt
+    - head -c 256 build_"$LAB"/out.txt
+
+on_merge:
+  extends: .test
+  variables:
+    LAB: $CI_COMMIT_REF_NAME
+  only:
+    - merge_requests
+
+.master_test:
+  extends: .test
+  only:
+    refs:
+      - master
+
+lab0:
+  extends: .master_test
+  variables:
+    LAB: lab0
+
+lab1-0:
+  extends: .master_test
+  variables:
+    LAB: lab1-0
+
+lab1-1:
+  extends: .master_test
+  variables:
+    LAB: lab1-1
+
+lab2:
+  extends: .master_test
+  variables:
+    LAB: lab2
+
+lab3-0:
+  extends: .master_test
+  variables:
+    LAB: lab3-0
+
+lab3-1:
+  extends: .master_test
+  variables:
+    LAB: lab3-1
+
+lab4:
+  extends: .master_test
+  variables:
+    LAB: lab4
+
+lab5:
+  extends: .master_test
+  variables:
+    LAB: lab5
+
+lab6:
+  extends: .master_test
+  variables:
+    LAB: lab6
+
+lab7:
+  extends: .master_test
+  variables:
+    LAB: lab7
+
+lab8-0:
+  extends: .master_test
+  variables:
+    LAB: lab8-0
+
+lab8-1:
+  extends: .master_test
+  variables:
+    LAB: lab8-1
+
+lab9:
+  extends: .master_test
+  variables:
+    LAB: lab9
