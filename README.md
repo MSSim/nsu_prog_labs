@@ -1,10 +1,11 @@
 # nsu_prog_labs
 ## How-to
 * fork repo
-* setup repo in https://appveyor.com/
 * fix links in readme
-* implement some tasks
-* create pull request (it will be rejected anyway)
+* create branch with task implementation
+* implement task
+* create merge request from branch taskname to master
+* assign a reviewer
 * ???????
 * PROFIT!!!
 
@@ -26,18 +27,18 @@
 |prim-kruskal  |[![build12][]][build-link]|
 |dijkstra-path |[![build13][]][build-link]|
 
-[build1]: https://appveyor-matrix-badges.herokuapp.com/repos/bobrofon/nsu-prog-labs/branch/master/1
-[build2]: https://appveyor-matrix-badges.herokuapp.com/repos/bobrofon/nsu-prog-labs/branch/master/2
-[build3]: https://appveyor-matrix-badges.herokuapp.com/repos/bobrofon/nsu-prog-labs/branch/master/3
-[build4]: https://appveyor-matrix-badges.herokuapp.com/repos/bobrofon/nsu-prog-labs/branch/master/4
-[build5]: https://appveyor-matrix-badges.herokuapp.com/repos/bobrofon/nsu-prog-labs/branch/master/5
-[build6]: https://appveyor-matrix-badges.herokuapp.com/repos/bobrofon/nsu-prog-labs/branch/master/6
-[build7]: https://appveyor-matrix-badges.herokuapp.com/repos/bobrofon/nsu-prog-labs/branch/master/7
-[build8]: https://appveyor-matrix-badges.herokuapp.com/repos/bobrofon/nsu-prog-labs/branch/master/8
-[build9]: https://appveyor-matrix-badges.herokuapp.com/repos/bobrofon/nsu-prog-labs/branch/master/9
-[build10]: https://appveyor-matrix-badges.herokuapp.com/repos/bobrofon/nsu-prog-labs/branch/master/10
-[build11]: https://appveyor-matrix-badges.herokuapp.com/repos/bobrofon/nsu-prog-labs/branch/master/11
-[build12]: https://appveyor-matrix-badges.herokuapp.com/repos/bobrofon/nsu-prog-labs/branch/master/12
-[build13]: https://appveyor-matrix-badges.herokuapp.com/repos/bobrofon/nsu-prog-labs/branch/master/13
+[build1]: https://gitlab.com/nsu-prog-course/labs/-/jobs/artifacts/master/raw/build_lab0/status.svg?job=lab0
+[build2]: https://gitlab.com/nsu-prog-course/labs/-/jobs/artifacts/master/raw/build_lab1-0/status.svg?job=lab1-0
+[build3]: https://gitlab.com/nsu-prog-course/labs/-/jobs/artifacts/master/raw/build_lab1-1/status.svg?job=lab1-1
+[build4]: https://gitlab.com/nsu-prog-course/labs/-/jobs/artifacts/master/raw/build_lab2/status.svg?job=lab2
+[build5]: https://gitlab.com/nsu-prog-course/labs/-/jobs/artifacts/master/raw/build_lab3-0/status.svg?job=lab3-0
+[build6]: https://gitlab.com/nsu-prog-course/labs/-/jobs/artifacts/master/raw/build_lab3-1/status.svg?job=lab3-1
+[build7]: https://gitlab.com/nsu-prog-course/labs/-/jobs/artifacts/master/raw/build_lab4/status.svg?job=lab4
+[build8]: https://gitlab.com/nsu-prog-course/labs/-/jobs/artifacts/master/raw/build_lab5/status.svg?job=lab5
+[build9]: https://gitlab.com/nsu-prog-course/labs/-/jobs/artifacts/master/raw/build_lab6/status.svg?job=lab6
+[build10]: https://gitlab.com/nsu-prog-course/labs/-/jobs/artifacts/master/raw/build_lab7/status.svg?job=lab7
+[build11]: https://gitlab.com/nsu-prog-course/labs/-/jobs/artifacts/master/raw/build_lab8-0/status.svg?job=lab8-0
+[build12]: https://gitlab.com/nsu-prog-course/labs/-/jobs/artifacts/master/raw/build_lab8-1/status.svg?job=lab8-1
+[build13]: https://gitlab.com/nsu-prog-course/labs/-/jobs/artifacts/master/raw/build_lab9/status.svg?job=lab9
 
-[build-link]: https://ci.appveyor.com/project/bobrofon/nsu-prog-labs
+[build-link]: https://gitlab.com/nsu-prog-course/labs/-/jobs
