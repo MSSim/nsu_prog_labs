@@ -43,6 +43,7 @@ on_merge:
 
 .master_test:
   extends: .test
+  allow_failure: true
   only:
     refs:
       - master
