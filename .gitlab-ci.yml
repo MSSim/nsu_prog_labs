@@ -9,6 +9,7 @@ stages:
     - mkdir -p "build_$LAB"
     - cd "build_$LAB"
   script:
+    - curl https://img.shields.io/badge/status-failed-blue.svg > status.svg
     - "STATUS=0"
     - cmake ../$LAB
     - make
@@ -23,10 +24,15 @@ stages:
     - make
     - "./$LAB < in.txt > /dev/null || STATUS=1"
     - "make check || STATUS=1"
-    - (($STATUS == 0))
+    - "(($STATUS == 0)) && curl https://img.shields.io/badge/status-passed-green.svg > status.svg"
+    - exit $STATUS
   after_script:
     - head -c 256 build_"$LAB"/in.txt
     - head -c 256 build_"$LAB"/out.txt
+  artifacts:
+    paths:
+      - build_"$LAB"/status.svg
+    when: always
 
 on_merge:
   extends: .test
