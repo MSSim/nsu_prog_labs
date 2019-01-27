@@ -31,7 +31,7 @@ stages:
     - head -c 256 build_"$LAB"/out.txt
   artifacts:
     paths:
-      - build_"$LAB"/status.svg
+      - "build_$LAB/status.svg"
     when: always
 
 on_merge:
