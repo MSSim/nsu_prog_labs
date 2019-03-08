@@ -34,12 +34,13 @@ stages:
       - "build_$LAB/status.svg"
     when: always
 
-on_merge:
+on_branch:
   extends: .test
   variables:
     LAB: $CI_COMMIT_REF_NAME
-  only:
-    - merge_requests
+  except:
+    refs:
+      - master
 
 .master_test:
   extends: .test
