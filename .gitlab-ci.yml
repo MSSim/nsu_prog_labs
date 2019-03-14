@@ -11,7 +11,7 @@ stages:
   script:
     - curl https://img.shields.io/badge/status-failed-blue.svg > status.svg
     - "STATUS=0"
-    - cmake ../$LAB
+    - cmake -DCMAKE_BUILD_TYPE=Release ../$LAB
     - make
     - "CTEST_OUTPUT_ON_FAILURE=1 make test || STATUS=1"
     - "ctest -V -T memcheck || true"
