@@ -1,0 +1,115 @@
+image: 13coders/cpp17-base
+
+stages:
+  - test
+
+.test:
+  stage: test
+  before_script:
+    - mkdir -p "build_$LAB"
+    - cd "build_$LAB"
+  script:
+    - curl https://img.shields.io/badge/status-failed-blue.svg > status.svg
+    - "STATUS=0"
+    - cmake -DCMAKE_BUILD_TYPE=Release ../$LAB
+    - make
+    - "CTEST_OUTPUT_ON_FAILURE=1 make test || STATUS=1"
+    - "ctest -V -T memcheck || cat Testing/Temporary/MemoryChecker.1.log || true"
+    - make clean
+    - cmake ../$LAB -DENABLE_ASAN=true -DCMAKE_C_COMPILER=clang
+    - make
+    - "./$LAB < in.txt > /dev/null || STATUS=1"
+    - make clean
+    - cmake ../$LAB -DENABLE_USAN=true -DCMAKE_C_COMPILER=clang
+    - make
+    - "./$LAB < in.txt > /dev/null || STATUS=1"
+    - "make check || STATUS=1"
+    - "(($STATUS == 0)) && curl https://img.shields.io/badge/status-passed-green.svg > status.svg"
+    - exit $STATUS
+  after_script:
+    - head -c 256 build_"$LAB"/in.txt
+    - head -c 256 build_"$LAB"/out.txt
+  artifacts:
+    paths:
+      - "build_$LAB/status.svg"
+    when: always
+
+on_branch:
+  extends: .test
+  variables:
+    LAB: $CI_COMMIT_REF_NAME
+  except:
+    refs:
+      - master
+
+.master_test:
+  extends: .test
+  allow_failure: true
+  only:
+    refs:
+      - master
+
+lab0:
+  extends: .master_test
+  variables:
+    LAB: lab0
+
+lab1-0:
+  extends: .master_test
+  variables:
+    LAB: lab1-0
+
+lab1-1:
+  extends: .master_test
+  variables:
+    LAB: lab1-1
+
+lab2:
+  extends: .master_test
+  variables:
+    LAB: lab2
+
+lab3-0:
+  extends: .master_test
+  variables:
+    LAB: lab3-0
+
+lab3-1:
+  extends: .master_test
+  variables:
+    LAB: lab3-1
+
+lab4:
+  extends: .master_test
+  variables:
+    LAB: lab4
+
+lab5:
+  extends: .master_test
+  variables:
+    LAB: lab5
+
+lab6:
+  extends: .master_test
+  variables:
+    LAB: lab6
+
+lab7:
+  extends: .master_test
+  variables:
+    LAB: lab7
+
+lab8-0:
+  extends: .master_test
+  variables:
+    LAB: lab8-0
+
+lab8-1:
+  extends: .master_test
+  variables:
+    LAB: lab8-1
+
+lab9:
+  extends: .master_test
+  variables:
+    LAB: lab9
